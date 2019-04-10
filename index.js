@@ -17,15 +17,23 @@ const collection = db.get("Books")
 
 app.use(bodyParser.json())
 
+/// get all entries
 app.get('/', async (req, res) => {
     const result = await collection.find({})
     return res.status(200).send(result)})
 
+/// get a single entry
+app.get('/:id', async (req, res) => {
+    const result = await collection.find(req.params.id)
+    return res.status(200).send(result)})
+
+/// add to entries
 app.post('/', async (req, res) => {
     const result = await collection.insert(req.body)
     return res.status(200).send(result)
 })
 
+/// delete an entry
 app.delete('/', async (req, res) => {
     await collection.findOneAndDelete(req.body)
     return res.status(200).send(await collection.find())
