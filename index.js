@@ -3,7 +3,7 @@ const app = express()
 const port = 4000
 const monk = require('monk')
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
 // Connection URL
 const url = 'mongodb://mddever:Password1@cluster0-shard-00-00-hiisr.gcp.mongodb.net:27017,cluster0-shard-00-01-hiisr.gcp.mongodb.net:27017,luster0-shard-00-02-hiisr.gcp.mongodb.net:27017/Booklist?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
 
@@ -16,6 +16,7 @@ db.then(() => {
 const collection = db.get("Books")
 
 app.use(bodyParser.json())
+app.use(cors())
 
 /// get all entries
 app.get('/', async (req, res) => {
@@ -28,7 +29,7 @@ app.get('/:id', async (req, res) => {
     return res.status(200).send(result)})
 
 /// add to entries
-app.post('/', async (req, res) => {
+app.post('/Create', async (req, res) => {
     const result = await collection.insert(req.body)
     return res.status(200).send(result)
 })
