@@ -24,8 +24,8 @@ app.get('/', async (req, res) => {
     return res.status(200).send(result)})
 
 /// get a single entry
-app.get('/:id', async (req, res) => {
-    const result = await collection.find(req.params.id)
+app.get('/Show/:id', async (req, res) => {
+    const [result] = await collection.find(req.params.id)
     return res.status(200).send(result)})
 
 /// add to entries
