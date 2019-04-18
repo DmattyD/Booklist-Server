@@ -9,6 +9,7 @@ const url = 'mongodb://mddever:Password1@cluster0-shard-00-00-hiisr.gcp.mongodb.
 
 const db = monk(url);
 
+//// test add to booklist server repo on github
 db.then(() => {
     console.log('Connected correctly to server')
 })
