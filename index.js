@@ -35,12 +35,12 @@ app.post('/Create', async (req, res) => {
 })
 
 /// delete an entry
-app.delete('/', async (req, res) => {
+app.delete('/Show/:id', async (req, res) => {
     await collection.findOneAndDelete(req.body)
     return res.status(200).send(await collection.find())
 })
 
-app.put('/:id', async (req, res) => {
+app.put('/Edit/:id', async (req, res) => {
     const result = await collection.findOneAndUpdate(req.params.id, req.body)
     console.log("I'm Updated Bitch!")
     return res.status(200).send(result)
